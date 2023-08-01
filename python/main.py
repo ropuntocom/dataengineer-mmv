@@ -24,8 +24,19 @@ class Trabajador(Persona):
 # main
 def main():
     # 2) Crea una instancia trabajador_1 y llama a su función presentación
-    trabajador_1 = Trabajador('Alberto', 20, 'IT', 'Data Engineer')
+    nombre = 'Alberto'
+    trabajador_1 = Trabajador(nombre, 20, 'IT', 'Data Engineer')
     trabajador_1.presentation()
+
+    # 3)  ¿Qué diferencia hay entre self.nombre y la variable llamada nombre?
+    '''
+    - self.nombre es una variable de instancia, y se utiliza para almacenar un dato que es único para cada objeto.
+    Para poder acceder a ella, siempre habrá que instanciar la clase en un objeto
+
+    - nombre, en este caso, es una variable local dentro de la función main().
+    Cuando se pasa como argumento al constructor de la clase Trabajador, se utiliza para inicializar la variable de instancia self.nombre con el valor de nombre, 
+    pero la variable local nombre existe al margen de instanciar la clase Trabajador o Persona en cualquier objeto.
+    '''
 
 if __name__ == "__main__":
     main()
