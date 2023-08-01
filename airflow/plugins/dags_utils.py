@@ -1,4 +1,6 @@
 # dags_utils.py
+from airflow.models.baseoperator import BaseOperator
+from datetime import datetime
 
 def split_tasks(tasks: list) -> (list,list):
     """
@@ -22,3 +24,15 @@ def split_tasks(tasks: list) -> (list,list):
             impares.append(tasks[i-1])
 
     return pares, impares
+
+
+# 4) Define un nuevo operador TimeDiff que parta del BaseOperator, que reciba una fecha (diff_date) como entrada y muestre la diferencia con la actual. Crea una tarea nueva con el operador.
+class TimeDiff(BaseOperator):
+    def __init__(self, diff_date: datetime, **kwargs) -> None:
+        super().__init__(**kwargs)
+        self.diff_date = diff_date
+
+    def execute(self, context):
+        current_date = datetime.utcnow()
+        time_difference = current_date - self.diff_date
+        self.log.info(f'Time difference: {time_difference}') # la diferencia entre la fecha de entrada y la actual aparecerá en el log
