@@ -1,8 +1,8 @@
 # clase padre
 class Persona:
-    def __init__(self, nombre: str, edad: int):
+    def __init__(self, nombre: str, edad):
         self.nombre = nombre
-        self.edad = edad
+        self.edad = int(edad) if isinstance(edad,str) else edad # para manejar el tipo de la edad
 
     def presentation(self):
         print(f"Hola! Soy {self.nombre} y tengo {self.edad} años")
@@ -11,7 +11,7 @@ class Persona:
 # 1) Define un nuevo objeto Trabajador, que herede de la clase Persona, añadiendo las propiedades departamento y puesto.  
 class Trabajador(Persona):
     # 4) Haz que por defecto el departamento sea Data y el puesto sea Analyst.
-    def __init__(self, nombre: str, edad: int, departamento: str = "Data", puesto: str = "Analyst"):
+    def __init__(self, nombre: str, edad, departamento: str = "Data", puesto: str = "Analyst"):
         super().__init__(nombre, edad) # usamos la clase padre que ya aceptaba nombre y edad
         self.departamento = departamento
         self.puesto = puesto
@@ -42,6 +42,11 @@ def main():
     # 4) Haz que por defecto el departamento sea Data y el puesto sea Analyst.
     trabajador_defect = Trabajador(nombre, 20)
     trabajador_defect.presentation()
+
+    # 5) Dada la lista my_var_list = [ ‘Andrea’, ‘42’, ‘Ventas’, ‘Manager’], pasa sus valores a una nueva instancia de Trabajador llamada trabajador_2 y llama a su función presentation.
+    my_var_list = [ 'Andrea', '42', 'Ventas', 'Manager']
+    trabajador_2 = Trabajador(*my_var_list)
+    trabajador_2.presentation()
 
 
 if __name__ == "__main__":
