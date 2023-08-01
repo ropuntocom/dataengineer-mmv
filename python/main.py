@@ -1,6 +1,6 @@
 # clase padre
 class Persona:
-    def __init__(self, nombre, edad):
+    def __init__(self, nombre: str, edad: int):
         self.nombre = nombre
         self.edad = edad
 
@@ -10,7 +10,8 @@ class Persona:
 
 # 1) Define un nuevo objeto Trabajador, que herede de la clase Persona, añadiendo las propiedades departamento y puesto.  
 class Trabajador(Persona):
-    def __init__(self, nombre, edad, departamento, puesto):
+    # 4) Haz que por defecto el departamento sea Data y el puesto sea Analyst.
+    def __init__(self, nombre: str, edad: int, departamento: str = "Data", puesto: str = "Analyst"):
         super().__init__(nombre, edad) # usamos la clase padre que ya aceptaba nombre y edad
         self.departamento = departamento
         self.puesto = puesto
@@ -37,6 +38,11 @@ def main():
     Cuando se pasa como argumento al constructor de la clase Trabajador, se utiliza para inicializar la variable de instancia self.nombre con el valor de nombre, 
     pero la variable local nombre existe al margen de instanciar la clase Trabajador o Persona en cualquier objeto.
     '''
+
+    # 4) Haz que por defecto el departamento sea Data y el puesto sea Analyst.
+    trabajador_defect = Trabajador(nombre, 20)
+    trabajador_defect.presentation()
+
 
 if __name__ == "__main__":
     main()
