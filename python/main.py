@@ -15,13 +15,17 @@ class Trabajador(Persona):
         self.departamento = departamento
         self.puesto = puesto
 
+    # 2) Cambio el método presentation de la clase Trabajador manteniendo la función original pero añadiendo un nuevo print con departamento y puesto
+    def presentation(self):
+        super().presentation()  # Mantengo el método de la clase Persona
+        print(f"Trabajo en el departamento de {self.departamento} y mi puesto es {self.puesto}")
+
+
 # main
 def main():
-    # variables
-    nombre = 'Alberto'
-
-    persona_1 = Persona(nombre,20)
-    persona_1.presentation()
+    # 2) Crea una instancia trabajador_1 y llama a su función presentación
+    trabajador_1 = Trabajador('Alberto', 20, 'IT', 'Data Engineer')
+    trabajador_1.presentation()
 
 if __name__ == "__main__":
     main()
