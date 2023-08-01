@@ -46,3 +46,19 @@ with DAG(
     start >> impares
     cross_downstream(impares, pares) 
     pares >> diff_date_task >> end
+
+    # 5) ¿Qué es un Hook? ¿En qué se diferencia de una conexión? 
+    '''
+    Hook: 
+    Un Hook es una interfaz para interactuar con plataformas y bases de datos externas de manera más sencilla, 
+    sin tener que escribir código de bajo nivel que acceder a su API o utilizar bibliotecas especiales. 
+    Los Hooks gestionan la conexión y la autenticación con los sistemas externos. 
+
+    Conexión:
+    Una Conexión es un objeto que almacena los datos necesarios para conectarse a un sistema externo. 
+    Este objeto contiene un conjunto de parámetros, como nombre de usuario, contraseña y nombre de host, 
+    junto con el tipo de sistema al que se conecta y un nombre único, llamado conn_id.
+
+    Cuando se utiliza un Hook, se puede intregrar con una conexión existente utilizando su conn_id, para recuperar los credenciales.
+    El Hook utilizará la información almacenada en la conexión para establecer la conexión con el sistema externo.    
+    '''
