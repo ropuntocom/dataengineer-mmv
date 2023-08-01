@@ -1,6 +1,9 @@
 from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.operators.dummy_operator import DummyOperator
+from airflow.models.baseoperator import cross_downstream
+
+from plugins.dags_utils import split_tasks
 
 
 # argumentos definidos por defecto
@@ -27,5 +30,13 @@ with DAG(
     # tarea end
     end = DummyOperator(
             task_id = 'end')
+
+    # 3) Define una lista de tareas dummy task_n con N tareas, donde cada tarea con n par dependa de todas las tareas impares.
+    N=5
+    tasks = [DummyOperator(task_id=f'task_{i}') for i in range(1, N+1)] # lista con N tareas dummy
+    pares, impares = split_tasks(tasks)
+
     # dependencias
-    start >> end
+    start >> impares
+    cross_downstream(impares, pares) 
+    pares >> end
